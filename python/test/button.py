@@ -1,7 +1,30 @@
 #!/usr/bin/python
 
-from Tkinter import *
-msg = Message(text="Text Text Text Text Text?")
-msg.config(bg='pink', font=('times', 16, 'italic'))
-msg.pack()
-mainloop()
+import Tkinter as tk
+import time
+import sys
+
+class ExampleApp(tk.Tk):
+    def __init__(self):
+        tk.Tk.__init__(self)
+        self.label = tk.Label(self, text="", width=10)
+        self.label.pack()
+        self.remaining = 0
+        self.countdown(10)
+
+    def countdown(self, remaining = None):
+        if remaining is not None:
+            self.remaining = remaining
+
+        if self.remaining <= 0:
+            self.label.configure(text="time's up!")
+            time.sleep(3)
+            sys.exit(1)
+        else:
+            self.label.configure(text="%d" % self.remaining)
+            self.remaining = self.remaining - 1
+            self.after(1000, self.countdown)
+
+if __name__ == "__main__":
+    app = ExampleApp()
+    app.mainloop()
