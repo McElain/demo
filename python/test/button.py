@@ -18,8 +18,7 @@ class ExampleApp(tk.Tk):
 
         if self.remaining <= 0:
             self.label.configure(text="time's up!")
-            time.sleep(3)
-            sys.exit(1)
+
         else:
             self.label.configure(text="%d" % self.remaining)
             self.remaining = self.remaining - 1
